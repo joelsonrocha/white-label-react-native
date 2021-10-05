@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "ENVFILE=.env react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "clean:ios": "rm -rf ios/build && rm -rf ios/Podfile.lock && rm -rf ios/Pods && rm -rf ios/SACPlus.xcworkspace && rm -rf ios/tmp.xcconfig",
+    "build:ios": "cd ios/ && pod install"
   },
   "dependencies": {
     "react": "17.0.1",
