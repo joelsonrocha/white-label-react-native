@@ -8,8 +8,12 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "clean:ios": "rm -rf ios/build && rm -rf ios/Podfile.lock && rm -rf ios/Pods && rm -rf ios/SACPlus.xcworkspace && rm -rf ios/tmp.xcconfig",
-    "build:ios": "cd ios/ && pod install"
+    "clean:ios": "rm -rf ios/build && rm -rf ios/Podfile.lock && rm -rf ios/Pods && rm -rf ios/app.xcworkspace && rm -rf ios/tmp.xcconfig",
+    "build:ios": "cd ios/ && pod install",
+    "clean": "yarn cache clean -f",
+    "merge-assets": "node ./scripts/merge-assets.js",
+    "load-brand-properties": "node ./scripts/load-brand-properties.js",
+    "prepare-release": "yarn load-brand-properties && yarn merge-assets"
   },
   "dependencies": {
     "react": "17.0.1",
