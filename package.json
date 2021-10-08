@@ -13,7 +13,9 @@
     "clean": "yarn cache clean -f",
     "merge-assets": "node ./scripts/merge-assets.js",
     "load-brand-properties": "node ./scripts/load-brand-properties.js",
-    "prepare-release": "yarn load-brand-properties && yarn merge-assets"
+    "prepare-release": "yarn load-brand-properties && yarn merge-assets",
+    "deploy-ios-beta": "cd ios/ && bundle exec fastlane ios all_apps_beta",
+    "deploy-ios-release": "cd ios/ && bundle exec fastlane ios all_apps_release"
   },
   "dependencies": {
     "react": "17.0.1",
