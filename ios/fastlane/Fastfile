@@ -12,63 +12,23 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
-
-default_platform(:ios)
-=begin
 platform :ios do
   before_all do |lane, options|
     app_store_connect_api_key()  #authenticating with App Store Connect 
   end
 
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
-  end
-
-  desc "Create app on Apple Developer and App Store Connect"
-  lane :create_app do
-    produce
-  end
-
-  desc "Sync certificates"
-  lane :sync_certificates do
-    #read-only disables match from overriding the existing certificates.
-    match({readonly: true, type: "appstore"})
-  end
-
-  desc "Create ipa"
-  lane :build do
-    #update profiles
-    sync_profiles
-    # Increases the build number by 1
-    increment_build_number
-    # Creates a signed file
-    gym
-  end
-
-  desc "Upload to TestFlight"
-  lane :beta do
-    build
-    pilot  
-  end
-end
-=end
-######padrão
-platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    username = "youremail@gmail.com"
-    company_name = "Company Name"
     sh "cp #{ENV["BRAND_ENV_PACKAGE_NAME"]} ../../.env"
     sh "cp #{ENV["BRAND_GOOGLE_SERVICE_INFO"]} ../app/GoogleService-Info.plist"
     sh "cd .. && yarn prepare-release"
 
     produce(
-      username: username,
+      username: ENV["APPLE_USERNAME"],
       app_identifier: ENV["BRAND_ID"],
       app_name: ENV["BRAND_APPNAME"],
       language: "English",
-      team_name: company_name,
+      team_name: ENV["COMPANY_NAME"],
       enable_services: {
         push_notification: "on", 
       }
@@ -81,10 +41,10 @@ platform :ios do
     )
 
     sigh(
-      username: username,
+      username: ENV["APPLE_USERNAME"],
       app_identifier: ENV["BRAND_ID"],
       output_path: "provisioning_profiles",
-      team_name: company_name
+      team_name: ENV["COMPANY_NAME"]
     )
 
     update_project_provisioning(
@@ -92,7 +52,7 @@ platform :ios do
       profile: ENV["SIGH_PROFILE_PATH"],
       target_filter: "app",
       build_configuration: "Release",
-      code_signing_identity: "Apple Distribution: Company Name. (TEAMID)"
+      code_signing_identity: "Apple Distribution: #{ENV["COMPANY_NAME"]}. (#{ENV["TEAM_ID"]})"
     )
 
     gym(
@@ -112,18 +72,16 @@ platform :ios do
 
   desc "Push a new app build to release"
   lane :release do
-    username = "youremail@gmail.com"
-    company_name = "Company Name"
     sh "cp #{ENV["BRAND_ENV_PACKAGE_NAME"]} ../../.env"
     sh "cp #{ENV["BRAND_GOOGLE_SERVICE_INFO"]} ../app/GoogleService-Info.plist"
     sh "cd .. && yarn prepare-release"
 
     produce(
-      username: username,
+      username: ENV["APPLE_USERNAME"],
       app_identifier: ENV["BRAND_ID"],
       app_name: ENV["BRAND_APPNAME"],
       language: "English",
-      team_name: company_name,
+      team_name: ENV["COMPANY_NAME"],
       enable_services: {
         push_notification: "on", 
       }
@@ -136,10 +94,10 @@ platform :ios do
     )
 
     sigh(
-      username: username,
+      username: ENV["APPLE_USERNAME"],
       app_identifier: ENV["BRAND_ID"],
       output_path: "provisioning_profiles",
-      team_name: company_name
+      team_name: ENV["COMPANY_NAME"]
     )
 
     update_project_provisioning(
@@ -147,7 +105,7 @@ platform :ios do
       profile: ENV["SIGH_PROFILE_PATH"],
       target_filter: "app",
       build_configuration: "Release",
-      code_signing_identity: "Apple Distribution: Company Name. (TEAMID)"
+      code_signing_identity: "Apple Distribution: #{ENV["COMPANY_NAME"]}. (#{ENV["TEAM_ID"]})"
     )
 
     get_push_certificate
