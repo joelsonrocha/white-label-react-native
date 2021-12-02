@@ -11,28 +11,28 @@ const env = result.parsed;
 
 const mergeDirs = MergeDirs.default;
 
-if (env.BRAND_ANDROID_ASSETS_DIR) {
-  console.log(`merging android assets with ${env.BRAND_ANDROID_ASSETS_DIR}`);
+if (env.APP_ANDROID_ASSETS_DIR) {
+  console.log(`merging android assets with ${env.APP_ANDROID_ASSETS_DIR}`);
   mergeDirs(
-    env.BRAND_ANDROID_ASSETS_DIR,
+    env.APP_ANDROID_ASSETS_DIR,
     './android/app/src/main/res',
     MergeDirs.conflictResolvers.overwrite,
   );
 } else {
   console.log(
-    'Skipping merge assets for android. env variable BRAND_ANDROID_ASSETS_DIR not found',
+    'Skipping merge assets for android. env variable APP_ANDROID_ASSETS_DIR not found',
   );
 }
 
-if (env.BRAND_IOS_ASSETS_DIR) {
-  console.log(`merging android assets with ${env.BRAND_IOS_ASSETS_DIR}`);
+if (env.APP_IOS_ASSETS_DIR) {
+  console.log(`merging android assets with ${env.APP_IOS_ASSETS_DIR}`);
   mergeDirs(
-    env.BRAND_IOS_ASSETS_DIR,
+    env.APP_IOS_ASSETS_DIR,
     './ios/app/Images.xcassets',
     MergeDirs.conflictResolvers.overwrite,
   );
 } else {
   console.log(
-    'Skipping merge assets for ios. env variable BRAND_IOS_ASSETS_DIR not found',
+    'Skipping merge assets for ios. env variable APP_IOS_ASSETS_DIR not found',
   );
 }

@@ -7,7 +7,7 @@ function formatToEnvVariable(brandConfig) {
   return Object.entries(brandConfig).reduce((acc, curr) => {
     const [key, value] = curr;
     const [, brandPropertyName] = key.split('.');
-    const envVariableKey = `BRAND_${brandPropertyName.toUpperCase()}`;
+    const envVariableKey = `APP_${brandPropertyName.toUpperCase()}`;
 
     return {
       ...acc,

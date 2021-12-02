@@ -15,7 +15,7 @@ function run() {
   const envFilePath = path.resolve(__dirname, '../.env');
   const fastlaneEnvFilePath = path.resolve(
     __dirname,
-    `../android/fastlane/.env.${env.BRAND_ID.replace('com.company.', '')}`,
+    `../android/fastlane/.env.${env.APP_ID.replace('com.company.', '')}`,
   );
 
   fs.copyFile(envFilePath, fastlaneEnvFilePath, callback);
