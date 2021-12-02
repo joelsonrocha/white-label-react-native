@@ -7,7 +7,9 @@ function run() {
   const env = result.parsed;
 
   function callback(err) {
-    if (err) throw err;
+    if (err) {
+      throw err;
+    }
   }
 
   const envFilePath = path.resolve(__dirname, '../.env');

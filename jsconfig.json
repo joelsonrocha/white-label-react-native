@@ -1,0 +1,78 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react",
+    "paths": {
+      "@components": [
+        "src/components/index",
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@config": [
+        "src/config/index",
+      ],
+      "@config/*": [
+        "src/config/*"
+      ],
+      "@hoc": [
+        "src/hoc/index",
+      ],
+      "@hoc/*": [
+        "src/hoc/*"
+      ],
+      "@hooks": [
+        "src/hooks/index",
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@http-client": [
+        "src/http-client/index",
+      ],
+      "@http-client/*": [
+        "src/http-client/*",
+      ],
+      "@i18n": [
+        "src/i18n/index"
+      ],
+      "@i18n/*": [
+        "src/i18n/*"
+      ],
+      "@screens": [
+        "src/screens/index",
+      ],
+      "@screens/*": [
+        "src/screens/*"
+      ],
+      "@services": [
+        "./src/services/index",
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@store": [
+        "src/store/index",
+      ],
+      "@store/*": [
+        "src/store/*"
+      ],
+      "@theme": [
+        "src/theme/index",
+      ],
+      "@theme/*": [
+        "src/theme/index",
+        "src/theme/*"
+      ],
+      "@utils": [
+        "src/utils/index"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
